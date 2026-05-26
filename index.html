@@ -1,214 +1,39 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إلى أغلى إنسانة ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            background: #0d0b21;
-            background: linear-gradient(135deg, #0d0b21 0%, #201b4a 100%);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 340px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 30px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            display: none;
-        }
-
-        .active {
-            display: block;
-            animation: fadeIn 0.8s ease;
-        }
-
-        .profile-frame {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid #ff4d94;
-            margin: 0 auto 15px;
-            overflow: hidden;
-            box-shadow: 0 0 20px #ff4d94;
-        }
-
-        .profile-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        input {
-            width: 85%;
-            padding: 12px;
-            margin: 15px 0;
-            border-radius: 15px;
-            border: 1px solid #ff4d94;
-            background: rgba(0, 0, 0, 0.4);
-            color: white;
-            text-align: center;
-            outline: none;
-        }
-
-        button {
-            background: #ff4d94;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 20px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .timer-grid {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
-        }
-
-        .time-box span {
-            display: block;
-            font-size: 1.5rem;
-            color: #ff4d94;
-            font-weight: bold;
-        }
-
-        .time-box p {
-            font-size: 0.7rem;
-            margin: 2px 0;
-            opacity: 0.8;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .card {
-            background: rgba(255, 77, 148, 0.1);
-            border: 1px dashed #ff4d94;
-            padding: 20px 5px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        .card.open {
-            background: #ff4d94;
-            border-style: solid;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <title>عيد سعيد ❤️</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div id="step1" class="container active">
-        <div class="profile-frame">
-            <img src="" alt="Love">
-        </div>
-        <p style="font-size: 0.8rem; opacity: 0.7;">كل الي هنا هيفضل بيني وبينك طول العمر ❤️</p>
-        <input type="password" id="pass" placeholder="البا_سورد | love">
-        <button onclick="checkPass()">يلا بسرعة افتحي 😂❤️</button>
+    <!-- صفحة الباسورد -->
+    <div class="container" id="login">
+        <h2>اكتبى اسمك يا بطوطتى اللى على الواتس 💖</h2>
+        <input type="text" id="password" placeholder="اسمك">
+        <br>
+        <button onclick="checkPassword()">دخول</button>
     </div>
 
-    <div id="step2" class="container">
-        <h3>بداية عمري معاكي ❤️</h3>
-        <div class="timer-grid">
-            <div class="time-box"><span id="d">0</span>
-                <p>يوم</p>
-            </div>
-            <div class="time-box"><span id="h">0</span>
-                <p>ساعة</p>
-            </div>
-            <div class="time-box"><span id="m">0</span>
-                <p>دقيقة</p>
-            </div>
-            <div class="time-box"><span id="s">0</span>
-                <p>ثانية</p>
-            </div>
-        </div>
-        <div class="cards-grid">
-            <div class="card" onclick="openCard(this, 'محبتش حد زيك')">اضغطي هنا</div>
-            <div class="card" onclick="openCard(this, 'ولا هحب غيرك')">اضغطي هنا</div>
-            <div class="card" onclick="openCard(this, 'انتي كل دنيتي')">اضغطي هنا</div>
-            <div class="card" onclick="openCard(this, 'ربنا يخليكي ليا')">اضغطي هنا</div>
-        </div>
-        <button style="margin-top:20px; background:none; border:1px solid #ff4d94;" onclick="nextStep(3)">شوفي الرسالة
-            الأخيرة ❤️</button>
+    <!-- صفحة الهدية -->
+    <div class="container hidden" id="gift">
+        <h2>افتحى الهدية 🎁</h2>
+        <div class="box" onclick="openBox()"></div>
     </div>
 
-    <div id="step3" class="container">
-        <h2>رسالتي ليكي ❤️</h2>
-        <p style="line-height: 1.6; font-size: 0.9rem;">
-            من يوم ما دخلتي حياتي وكل حاجة اتبهتت وبقيتي إنتي اللون الوحيد اللي بشوفه..
-            شكراً إنك موجودة وشكراً على كل لحظة حلوة عشناها سوا.
-            أنا بحبك جداً وهفضل أحبك لآخر يوم في عمري.
-        </p>
-        <div style="font-size: 2rem; margin-top: 15px;">💍❤️</div>
-        <button style="margin-top:20px;" onclick="nextStep(2)">رجوع للعداد</button>
+    <!-- الرسالة Full Screen -->
+    <div class="message" id="message">
+        <div class="text">
+            <h1> كل سنة وى انتى طيبة با بطوطتى وى عيد سعيد عليكى طبعا وى على كل حبايبك </h1>
+            <h1> وى احب اشكرك لانك انتى الوحيدة اللى بتساعدينى احول حياتى للاحسن </h1>
+            <h1> وجودك في حياتي نعمة كبيرة بجد، ومهما أقول مش هيكفي قد إيه انتي غالية عليا 💕</h1>
+            <h1> وإن شاء الله كل سنة تبقي أسعد وأحلى وأقرب لكل اللي نفسك فيه 💖 </h1>
+        </div>
     </div>
 
-    <script>
-        // التعديل هنا: التاريخ أصبح 1 يناير 2024
-        const start = new Date("2024-01-01T00:00:00").getTime();
-
-        function checkPass() {
-            const p = document.getElementById('pass').value;
-            if (p.toLowerCase() === 'love') {
-                nextStep(2);
-                setInterval(updateTimer, 1000);
-            } else { alert("الباسورد غلط يا قمر 😂"); }
-        }
-
-        function nextStep(stepNum) {
-            document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
-            document.getElementById('step' + stepNum).classList.add('active');
-        }
-
-        function updateTimer() {
-            const now = new Date().getTime();
-            const diff = now - start;
-            document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000);
-        }
-
-        function openCard(el, msg) {
-            el.innerText = msg;
-            el.classList.add('open');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
